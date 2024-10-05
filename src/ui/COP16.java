@@ -3,7 +3,6 @@ package ui;
 import java.util.Scanner;
 
 import model.Controller;
-import model.Representative;
 
 public class COP16 {
     Scanner reader;
@@ -147,8 +146,7 @@ public class COP16 {
                 .println(
                         "Ingresa el problema de la comunidad (FALTA_AGUA, FALTA_HOSPITAL, FALTA_ESCUELA, FALTA_COMIDA)");
         String problem = reader.nextLine();
-        Representative representative = new Representative(representativeName, representativePhone);
-        controller.createCommunity(name, type, representative, population, problem);
+        controller.createCommunity(name, type, representativeName, representativePhone, population, problem);
     }
 
     public void registerSpecie() {

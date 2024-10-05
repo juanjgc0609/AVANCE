@@ -36,7 +36,7 @@ public class Walk {
     // Calcular la cantidad de buses necesarios (asumiendo capacidad de 40 personas
     // por bus)
     public int calculateBusesNeeded(int totalPeople) {
-        return (int) Math.ceil(totalPeople / 40.0); // Cada bus tiene capacidad para 40 personas
+        return (int) Math.ceil(totalPeople / 25.0); // Cada bus tiene capacidad para 40 personas
     }
 
     // Verificar si el clima es adecuado (ejemplo con temperatura entre 15 y 30

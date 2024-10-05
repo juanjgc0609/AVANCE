@@ -32,8 +32,10 @@ public class Controller {
     }
 
     // Crear una comunidad
-    public Community createCommunity(String name, String type, Representative representative, int population,
+    public Community createCommunity(String name, String type, String representativeName, String representativePhone,
+            int population,
             String problem) {
+        Representative representative = createRepresentative(representativeName, representativePhone);
         return new Community(name, type, representative, population, problem);
     }
 
