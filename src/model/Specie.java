@@ -7,9 +7,9 @@ public class Specie {
     private int numberOfSpecimens;
 
     // Constructor para Specie
-    public Specie(String name, TypeSpecies type, String photo, int numberOfSpecimens) {
+    public Specie(String name, String type, String photo, int numberOfSpecimens) {
         this.name = name;
-        this.type = type;
+        setType(type);
         this.photo = photo;
         this.numberOfSpecimens = numberOfSpecimens;
     }
@@ -41,13 +41,18 @@ public class Specie {
     }
 
     // Establecer el tipo de la especie
-    public void setType(TypeSpecies type) {
-        this.type = type;
+    public void setType(String type) {
+        this.type = TypeSpecies.valueOf(type.toUpperCase());
     }
 
     // Establecer el número de especímenes
     public void setNumberSpecimens(int number) {
         this.numberOfSpecimens = number;
+    }
+
+    // Obtener la foto de la especie
+    public String getPhoto() {
+        return photo;
     }
 
     // Establecer la foto de la especie
