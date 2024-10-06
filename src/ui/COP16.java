@@ -1,12 +1,16 @@
 package ui;
 
 import java.util.Scanner;
-
 import model.Controller;
 
 public class COP16 {
     Scanner reader;
     Controller controller;
+
+    public COP16() {
+        // Inicializa el controlador
+        controller = new Controller(); // Asegúrate de inicializar controller aquí
+    }
 
     public static void main(String[] args) {
         // Código para inicializar el sistema
@@ -14,21 +18,20 @@ public class COP16 {
         cop16.reader = new Scanner(System.in);
         int opt = 0;
         while (opt != 10) {
-            System.out.println("¿Que desea hacer?");
+            System.out.println("¿Qué desea hacer?");
             System.out.println("1. Registrar voluntario");
             System.out.println("2. Para registrar una caminata");
             System.out.println("3. Para registrar un lugar con diversidad biológica");
             System.out.println("4. Para consultar los lugares ordenados de menor a mayor con respecto al área");
-            System.out.println(
-                    "5. Para consultar el departamento que tiene más lugares con diversidad biológica registrados hasta el momento.");
+            System.out.println("5. Para consultar el departamento que tiene más lugares con diversidad biológica registrados hasta el momento.");
             System.out.println("6. Para ingresar una comunidad");
             System.out.println("7. Para ingresar una especie a un lugar");
             System.out.println("8. Modificar los datos de la especie en un lugar.");
             System.out.println("9. Para consultar la información de las comunidades con problemas");
             System.out.println("10. Para consultar el nombre del lugar con mayor cantidad de especies.");
-            System.out.println("10. Salir");
+            System.out.println("11. Salir");
             opt = cop16.reader.nextInt();
-            cop16.reader.nextLine();
+            cop16.reader.nextLine(); // Consume el salto de línea
             switch (opt) {
                 case 1:
                     cop16.registerVolunteer();
@@ -59,23 +62,24 @@ public class COP16 {
                     break;
                 case 10:
                     cop16.showPlaceNameWithMoreSpecies();
+                    break;
                 default:
-                    System.out.println("Opciòn inválida");
+                    System.out.println("Opción inválida");
                     break;
             }
         }
+        cop16.reader.close(); // Cierra el escáner al final
     }
 
     public void registerVolunteer() {
         // Código para registrar un voluntario
-        System.out.println(
-                "Bienvenido voluntario a la aplicación de Interacción de Rutas Ecológicas COP 16 Cali, Colombia");
-        System.out.println("¿Cúal es tu nombre?");
+        System.out.println("Bienvenido voluntario a la aplicación de Interacción de Rutas Ecológicas COP 16 Cali, Colombia");
+        System.out.println("¿Cuál es tu nombre?");
         String name = reader.nextLine();
         System.out.println("Por favor, digita tu cédula");
         String id = reader.nextLine();
         controller.createVolunteer(name, id);
-        System.out.println("¡Bienvenido, + " + name + "!");
+        System.out.println("¡Bienvenido, " + name + "!");
     }
 
     public void registerWalk() {
@@ -85,7 +89,7 @@ public class COP16 {
         System.out.println("¿Cuántos guías acudirán a la caminata el día de hoy?");
         int guides = reader.nextInt();
         reader.nextLine();
-        System.out.println("Ingresa el tipo de ruta");
+        System.out.println("Ingresa el tipo de ruta (LADERA, FARALLONES, ORIENTE)");
         String routeType = reader.nextLine();
         System.out.println("Ingresa la temperatura");
         double temperature = reader.nextDouble();
@@ -134,20 +138,26 @@ public class COP16 {
         // Código para registrar una comunidad
         System.out.println("Ingresa el nombre de la comunidad");
         String name = reader.nextLine();
+    
         System.out.println("Ingresa el tipo de comunidad (AFROCOLOMBIANA, INDIGENA, RAIZAL)");
         String type = reader.nextLine();
+    
         System.out.println("Ingresa el nombre del representante de la comunidad");
         String representativeName = reader.nextLine();
+    
         System.out.println("Ingresa el número de teléfono del representante de la comunidad");
         String representativePhone = reader.nextLine();
+    
         System.out.println("Ingresa la población de la comunidad");
         int population = reader.nextInt();
-        System.out
-                .println(
-                        "Ingresa el problema de la comunidad (FALTA_AGUA, FALTA_HOSPITAL, FALTA_ESCUELA, FALTA_COMIDA)");
+        reader.nextLine();  // Consumir el salto de línea pendiente después de nextInt()
+    
+        System.out.println("Ingresa el problema de la comunidad (FALTA_AGUA, FALTA_HOSPITAL, FALTA_ESCUELA, FALTA_COMIDA)");
         String problem = reader.nextLine();
+    
         controller.createCommunity(name, type, representativeName, representativePhone, population, problem);
     }
+    
 
     public void registerSpecie() {
         // Código para registrar una especie

@@ -55,40 +55,47 @@ public class Controller {
     }
 
     public String showPlacesByArea() {
-        // Lógica para mostrar los lugares por área
-        BiodiversePlace[] places = sortPlacesByArea();
-        String message = "";
-        for (int i = 0; i < places.length; i++) {
-            message += places[i].toString() + "\n";
+        BiodiversePlace[] sortedPlaces = sortPlacesByArea();
+        StringBuilder message = new StringBuilder();
+        for (int i = 0; i < sortedPlaces.length; i++) {
+            if (sortedPlaces[i] != null) { // Asegurarse de que el lugar no sea nulo
+                message.append(sortedPlaces[i].toString()).append("\n");
+            }
         }
-        return message;
+        return message.toString();
     }
+    
 
     // Ordenar lugares por área
-    public BiodiversePlace[] sortPlacesByArea() {
-        // Implementación del algoritmo para ordenar los lugares por área
-        for (int i = 0; i < places.length - 1; i++) {
-            for (int j = 0; j < places.length - i - 1; j++) {
+public BiodiversePlace[] sortPlacesByArea() {
+    for (int i = 0; i < places.length - 1; i++) {
+        for (int j = 0; j < places.length - i - 1; j++) {
+            // Asegurarse de que los lugares no sean nulos antes de acceder a sus propiedades
+            if (places[j] != null && places[j + 1] != null) {
                 if (places[j].getArea() > places[j + 1].getArea()) {
+                    // Intercambiar lugares si es necesario
                     BiodiversePlace temp = places[j];
                     places[j] = places[j + 1];
                     places[j + 1] = temp;
                 }
             }
         }
-
-        return places;
     }
+    return places;
+}
+
 
     // Departamento con más lugares
-    public String departmentWithMorePlaces() {
-        // Buscar el string más repetido
-        String departmentWithMorePlaces = "";
-        int maxCount = 0;
-        for (int i = 0; i < places.length; i++) {
+    // Departamento con más lugares
+public String departmentWithMorePlaces() {
+    String departmentWithMorePlaces = "";
+    int maxCount = 0;
+
+    for (int i = 0; i < places.length; i++) {
+        if (places[i] != null) {  // Verificar que el lugar no sea nulo
             int count = 0;
             for (int j = 0; j < places.length; j++) {
-                if (places[i].getDepartment().equals(places[j].getDepartment())) {
+                if (places[j] != null && places[i].getDepartment().equals(places[j].getDepartment())) {
                     count++;
                 }
             }
@@ -97,8 +104,10 @@ public class Controller {
                 departmentWithMorePlaces = places[i].getDepartment();
             }
         }
-        return departmentWithMorePlaces;
     }
+    return departmentWithMorePlaces;
+}
+
 
     // Cambiar los datos de una especie en un lugar
     public String changeSpecie(String bioPlaceName, String specieName, String newSpecieName, String newSpecieType,
@@ -127,15 +136,22 @@ public class Controller {
     public Walk searchWalkByRouteType(String routeType) {
         // Lógica para buscar una caminata por su tipo de ruta
         Walk walk = null;
-        for (int i = 0; i < volunteer.getWalks().length; i++) {
-            if (volunteer.getWalks()[i] != null) {
-                if (volunteer.getWalks()[i].getRoute().getType().equals(routeType.toUpperCase())) {
-                    walk = volunteer.getWalks()[i];
+        Walk[] walks = volunteer.getWalks();
+    
+        for (int i = 0; i < walks.length; i++) {
+            if (walks[i] != null) {
+                // Compara el nombre del enum con la ruta pasada
+                if (walks[i].getRoute().getType().name().equalsIgnoreCase(routeType)) {
+                    walk = walks[i];
+                    break; // Sale del bucle una vez que se encuentra la caminata
                 }
             }
         }
-        return walk;
+    
+        return walk; // Retorna la caminata encontrada o null si no se encontró
     }
+    
+    
 
     // Asociar una caminata a un voluntario
     public String asociateWalkToVolunteer(String routeType, int participants, int guides, double temperature,
@@ -193,16 +209,14 @@ public class Controller {
 
     // Buscar un lugar por su nombre
     public BiodiversePlace searchPlaceByName(String name) {
-        // Lógica para buscar un lugar por su nombre
-        BiodiversePlace place = null;
         for (int i = 0; i < places.length; i++) {
-            if (places[i].getName().equals(name)) {
-                place = places[i];
-                break;
+            if (places[i] != null && places[i].getName().equals(name)) { // Verifica que el lugar no sea nulo
+                return places[i];
             }
         }
-        return place;
+        return null;
     }
+    
 
     // Buscar una comunidad por su nombre
     public Community searchCommunityByName(String name) {
@@ -219,29 +233,39 @@ public class Controller {
     }
 
     // Buscar una ruta por su tipo
-    public Route searchRouteByType(String type) {
-        // Lógica para buscar una ruta por su tipo
-        Route route = null;
-        for (int i = 0; i < routes.length; i++) {
-            if (routes[i].getType().equals(type.toUpperCase())) {
-                route = routes[i];
-                break;
-            }
+    // Buscar una ruta por su tipo
+public Route searchRouteByType(String type) {
+    for (int i = 0; i < routes.length; i++) {
+        if (routes[i] != null && routes[i].getType() != null && routes[i].getType().name().equalsIgnoreCase(type)) {
+            return routes[i];
         }
-        return route;
     }
+    return null;
+}
 
+    
     // Consultar las comunidades con problemas
-    public Community[] consultCommunitiesByProblem(String problem) {
-        // Lógica para devolver las comunidades con problemas
-        Community[] communitiesWithProblem = new Community[places.length];
+    public String consultCommunitiesByProblem(String problem) {
+        StringBuilder result = new StringBuilder();
+        boolean found = false;
+    
         for (int i = 0; i < places.length; i++) {
-            if (places[i].getCommunity().getProblem().equals(problem.toUpperCase())) {
-                communitiesWithProblem[i] = places[i].getCommunity();
+            if (places[i] != null && places[i].getCommunity() != null) { // Verificar que no sea null
+                if (places[i].getCommunity().getProblem().name().equals(problem)) {
+                    result.append(places[i].getCommunity().getName()).append("\n");
+                    found = true;
+                }
             }
         }
-        return communitiesWithProblem;
+    
+        if (!found) {
+            result.append("No se encontraron comunidades con el problema ").append(problem).append("\n");
+        }
+    
+        return result.toString();
     }
+    
+    
 
     // Consultar el lugar con más especies
     public String showPlaceNameWithMoreSpecies() {
