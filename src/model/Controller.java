@@ -5,11 +5,13 @@ public class Controller {
     private BiodiversePlace[] places;
     private Route[] routes;
     private Volunteer volunteer;
+    private Community[] communities;
 
     // Constructor
     public Controller() {
         this.routes = new Route[3];
         this.places = new BiodiversePlace[30];
+        this.communities = new Community[30];
     }
 
     // Crear un voluntario
@@ -25,10 +27,50 @@ public class Controller {
         return new Walk(route, participants, guides, volunteer, temperature, humidity);
     }
 
+    // Registrar lugar biodiverso
+    public String registerPlace(String name, String department, double area, String photo, String inauguration,
+            double budget) {
+        BiodiversePlace biodiversePlace = createBiodiversePlace(name, department, area, photo, inauguration, budget);
+        String message = "";
+        boolean added = false;
+        for (int i = 0; i < places.length && !added; i++) {
+            if (places[i] == null) {
+                places[i] = biodiversePlace;
+                added = true;
+            }
+        }
+        if (added) {
+            message = "Lugar ingresado con éxito.";
+        } else {
+            message = "Lugar no pudo ser ingresado, el sistema se encuentra lleno.";
+        }
+        return message;
+    }
+
     // Crear un lugar biodiverso inicialmente sin especies ni comunidad que lo cuide
     public BiodiversePlace createBiodiversePlace(String name, String department, double area, String photo,
             String inauguration, double budget) {
         return new BiodiversePlace(name, department, area, photo, inauguration, budget);
+    }
+
+    // Registrar comunidad
+    public String registerCommunity(String name, String type, String representativeName, String representativePhone,
+            int population, String problem) {
+        Community community = createCommunity(name, type, representativeName, representativePhone, population, problem);
+        String message = "";
+        boolean added = false;
+        for (int i = 0; i < communities.length && !added; i++) {
+            if (communities[i] == null) {
+                communities[i] = community;
+                added = true;
+            }
+        }
+        if (added) {
+            message = "Comunidad ingresada con electrónico.";
+        } else {
+            message = "Comunidad no pudo ser ingresada, el sistema se encuentra lleno.";
+        }
+        return message;
     }
 
     // Crear una comunidad
