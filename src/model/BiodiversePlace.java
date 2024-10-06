@@ -10,10 +10,20 @@ public class BiodiversePlace {
     private String photo;
     private LocalDate inaugurationDate;
     private double budget;
+    // associations
     private Specie[] species;
     private Community community;
 
-    // Constructor
+    /**
+     * Creates a new biodiverse place with the given attributes.
+     * 
+     * @param name             The name of the biodiverse place.
+     * @param department       The department where the place is located.
+     * @param area             The area of the biodiverse place.
+     * @param photo            The URL of the photo of the biodiverse place.
+     * @param inaugurationDate The inauguration date of the biodiverse place.
+     * @param budget           The budget allocated to the biodiverse place.
+     */
     public BiodiversePlace(String name, String department, double area, String photo, String inaugurationDate,
             double budget) {
         this.name = name;
@@ -25,15 +35,7 @@ public class BiodiversePlace {
         this.species = new Specie[50];
     }
 
-    public void addSpecies(Specie specie) {
-        for (int i = 0; i < species.length; i++) {
-            if (species[i] == null) {
-                species[i] = specie;
-                break;
-            }
-        }
-    }
-
+    // Getters and setters
     public String getName() {
         return name;
     }
@@ -98,6 +100,12 @@ public class BiodiversePlace {
         this.community = community;
     }
 
+    /**
+     * Searches for a specie by its name.
+     * 
+     * @param name The name of the specie.
+     * @return The found specie or null if not found.
+     */
     public Specie searchSpecieByName(String name) {
         Specie specie = null;
         for (int i = 0; i < species.length; i++) {
@@ -109,6 +117,12 @@ public class BiodiversePlace {
         return specie;
     }
 
+    /**
+     * Adds a specie to the place if there is available space.
+     * 
+     * @param specie The specie to add.
+     * @return True if the specie was added, false otherwise.
+     */
     public boolean addSpecie(Specie specie) {
         boolean added = false;
         for (int i = 0; i < species.length && !added; i++) {
@@ -120,6 +134,11 @@ public class BiodiversePlace {
         return added;
     }
 
+    /**
+     * Returns a string representation of the BiodiversePlace object.
+     * 
+     * @return A string representation of the BiodiversePlace object.
+     */
     @Override
     public String toString() {
         return "Lugar: " + name + ", Área: " + area + ", Departamento: " + department;

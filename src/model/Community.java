@@ -1,11 +1,14 @@
 package model;
 
 public class Community {
+    // attributes
     private String name;
-    private TypeCommunity type;
-    private Representative representative;
     private int population;
+    // enums
+    private TypeCommunity type;
     private Problem problem;
+    // associations
+    private Representative representative;
 
     /**
      * Creates a new community in the system.

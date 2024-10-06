@@ -1,10 +1,12 @@
 package model;
 
 public class Specie {
+    // Attributes
     private String name;
-    private TypeSpecies type;
     private String photo;
     private int numberOfSpecimens;
+    // enums
+    private TypeSpecies type;
 
     /**
      * Constructs a new Specie object with the given attributes.

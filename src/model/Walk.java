@@ -1,11 +1,13 @@
 package model;
 
 public class Walk {
-    private Route route;
+    // Attributes
     private int participants;
     private int guides;
     private double temperature;
     private double humidity;
+    // associations
+    private Route route;
     private Volunteer volunteer;
 
     // Constructor

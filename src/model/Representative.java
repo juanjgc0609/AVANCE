@@ -1,6 +1,8 @@
 package model;
 
 public class Representative {
+
+    // attributes
     private String name;
     private String cellphone;
 
