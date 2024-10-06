@@ -17,7 +17,7 @@ public class COP16 {
         COP16 cop16 = new COP16();
         cop16.reader = new Scanner(System.in);
         int opt = 0;
-        while (opt != 10) {
+        while (opt != 11) {
             System.out.println("¿Qué desea hacer?");
             System.out.println("1. Registrar voluntario");
             System.out.println("2. Para registrar una caminata");
@@ -71,8 +71,11 @@ public class COP16 {
         cop16.reader.close(); // Cierra el escáner al final
     }
 
+    /**
+     * Registra un nuevo voluntario en el sistema.
+     * Pide al usuario ingresar su nombre y cédula para registrarlo.
+     */
     public void registerVolunteer() {
-        // Código para registrar un voluntario
         System.out.println("Bienvenido voluntario a la aplicación de Interacción de Rutas Ecológicas COP 16 Cali, Colombia");
         System.out.println("¿Cuál es tu nombre?");
         String name = reader.nextLine();
@@ -82,8 +85,11 @@ public class COP16 {
         System.out.println("¡Bienvenido, " + name + "!");
     }
 
+    /**
+     * Registra una caminata ecológica en el sistema.
+     * Solicita información sobre los participantes, guías, ruta, temperatura y humedad.
+     */
     public void registerWalk() {
-        // Código para registrar una caminata
         System.out.println("¿Cuantos participantes acudirán a la caminata el día de hoy?");
         int participants = reader.nextInt();
         System.out.println("¿Cuántos guías acudirán a la caminata el día de hoy?");
@@ -99,11 +105,15 @@ public class COP16 {
         reader.nextLine();
 
         System.out.println(controller.asociateWalkToVolunteer(routeType, participants, guides, temperature, humidity));
-
     }
 
+    /**
+     * Registra un nuevo lugar biodiverso en el sistema, validando que el nombre sea único.
+     * @param reader Scanner para leer la entrada del usuario.
+     * @param cantidadLugares Número actual de lugares registrados.
+     * @return La cantidad de lugares actualizada después del registro.
+     */
     public void registerBiodiversePlace() {
-        // Código para registrar un lugar biodiverso
         System.out.println("Ingresa el nombre del lugar biodiverso");
         String name = reader.nextLine();
         System.out.println("Ingresa el departamento en el cual está el lugar");
@@ -124,18 +134,23 @@ public class COP16 {
         System.out.println("Lugar ingresado con éxito.");
     }
 
+    /**
+     * Asocia una comunidad a un lugar biodiverso en el sistema.
+     * Solicita el nombre del lugar y el de la comunidad.
+     */
     public void asociateCommunityToPlace() {
-        // Código para asociar una comunidad a un lugar biodiverso
         System.out.println("Ingresa el nombre del lugar");
         String bioPlaceName = reader.nextLine();
         System.out.println("Ingresa el nombre de la comunidad");
         String communityName = reader.nextLine();
         System.out.println(controller.asociateCommunityToPlace(bioPlaceName, communityName));
-
     }
 
+    /**
+     * Registra una nueva comunidad en el sistema.
+     * Solicita el nombre, tipo de comunidad, representante, teléfono y problema.
+     */
     public void registerCommunity() {
-        // Código para registrar una comunidad
         System.out.println("Ingresa el nombre de la comunidad");
         String name = reader.nextLine();
     
@@ -157,10 +172,12 @@ public class COP16 {
     
         controller.createCommunity(name, type, representativeName, representativePhone, population, problem);
     }
-    
 
+    /**
+     * Registra una especie en un lugar biodiverso.
+     * Solicita información sobre el lugar, el nombre de la especie, tipo, foto y cantidad de ejemplares.
+     */
     public void registerSpecie() {
-        // Código para registrar una especie
         System.out.println("Ingresa el nombre del lugar a donde se le registrarará la especie");
         String bioPlaceName = reader.nextLine();
         System.out.println("Ingresa el nombre de la especie");
@@ -172,12 +189,14 @@ public class COP16 {
         System.out.println("Ingresa la cantidad de ejemplares de la especie");
         int numberOfSpecimens = reader.nextInt();
         reader.nextLine();
-        System.out.println(
-                controller.asociateSpecieToPlace(bioPlaceName, name, type, photo, numberOfSpecimens));
+        System.out.println(controller.asociateSpecieToPlace(bioPlaceName, name, type, photo, numberOfSpecimens));
     }
 
+    /**
+     * Modifica los datos de una especie ya registrada en un lugar biodiverso.
+     * Solicita el nombre del lugar, de la especie original, y los nuevos datos de la especie.
+     */
     public void changeSpecie() {
-        // Código para modificar una especie en un lugar
         System.out.println("Ingresa el nombre del lugar");
         String bioPlaceName = reader.nextLine();
         System.out.println("Ingresa el nombre de la especie");
@@ -195,25 +214,34 @@ public class COP16 {
                 newSpeciePhoto, newNumberOfSpecimens));
     }
 
+    /**
+     * Muestra una lista de los lugares biodiversos ordenados por área de menor a mayor.
+     */
     public void showPlacesByArea() {
-        // Código para mostrar los lugares según su área
         System.out.println(controller.showPlacesByArea());
     }
 
+    /**
+     * Muestra el departamento con más lugares registrados hasta el momento.
+     */
     public void departmentWithMorePlaces() {
-        // Código para mostrar el departamento con más lugares registrados
         System.out.println(controller.departmentWithMorePlaces());
     }
 
+    /**
+     * Consulta las comunidades que tienen problemas específicos (agua, hospitales, escuelas, etc.).
+     * Solicita el tipo de problema para hacer la consulta.
+     */
     public void consultCommunitiesByProblem() {
-        // Código para consultar la información de las comunidades con problemas
         System.out.println("Ingresa el problema a consultar");
         String problem = reader.nextLine();
         System.out.println(controller.consultCommunitiesByProblem(problem));
     }
 
+    /**
+     * Muestra el nombre del lugar biodiverso con la mayor cantidad de especies registradas.
+     */
     public void showPlaceNameWithMoreSpecies() {
-        // Código para consultar el lugar con más especies
         System.out.println(controller.showPlaceNameWithMoreSpecies());
     }
 }

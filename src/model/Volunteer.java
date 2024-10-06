@@ -6,7 +6,11 @@ public class Volunteer {
     private Walk[] walks;
     private int walkCount;
 
-    // Constructor para Volunteer
+    /**
+     * Constructor para crear un nuevo voluntario.
+     * @param name Nombre del voluntario.
+     * @param id Identificación del voluntario.
+     */
     public Volunteer(String name, String id) {
         this.name = name;
         this.id = id;
@@ -14,17 +18,27 @@ public class Volunteer {
         this.walkCount = 0;        // Contador para el número de caminatas
     }
 
-    // Obtener el nombre del voluntario
+    /**
+     * Obtiene el nombre del voluntario.
+     * @return Nombre del voluntario.
+     */
     public String getName() {
         return name;
     }
 
-    // Obtener el ID del voluntario
+    /**
+     * Obtiene la identificación del voluntario.
+     * @return Identificación del voluntario.
+     */
     public String getId() {
         return id;
     }
 
-    // Agregar una caminata a la lista de caminatas del voluntario
+    /**
+     * Agrega una caminata al voluntario.
+     * Si el arreglo de caminatas está lleno, muestra un mensaje de error.
+     * @param walk La caminata a agregar.
+     */
     public void addWalk(Walk walk) {
         if (walkCount < walks.length) {
             walks[walkCount] = walk;
@@ -34,7 +48,11 @@ public class Volunteer {
         }
     }
 
-    // Obtener la lista de caminatas asociadas al voluntario
+    /**
+     * Obtiene la lista de caminatas asociadas al voluntario.
+     * Solo retorna las caminatas que han sido agregadas (sin espacios vacíos).
+     * @return Un arreglo con las caminatas del voluntario.
+     */
     public Walk[] getWalks() {
         Walk[] actualWalks = new Walk[walkCount];
         for (int i = 0; i < walkCount; i++) {
@@ -43,5 +61,3 @@ public class Volunteer {
         return actualWalks; // Retorna solo las caminatas almacenadas hasta el momento
     }
 }
-
-
