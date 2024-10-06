@@ -1,10 +1,13 @@
 package model;
 
 public class Volunteer {
+    // Attributes
     private String name;
     private String id;
-    private Walk[] walks;
     private int walkCount;
+
+    // Associations
+    private Walk[] walks;
 
     /**
      * Constructor
