@@ -8,10 +8,14 @@ public class COP16 {
     Scanner reader;
     Controller controller;
 
+    public COP16() {
+        reader = new Scanner(System.in);
+        controller = new Controller();
+    }
+
     public static void main(String[] args) {
         // Código para inicializar el sistema
         COP16 cop16 = new COP16();
-        cop16.reader = new Scanner(System.in);
         int opt = 0;
         while (opt != 10) {
             System.out.println("¿Que desea hacer?");
@@ -75,7 +79,7 @@ public class COP16 {
         System.out.println("Por favor, digita tu cédula");
         String id = reader.nextLine();
         controller.createVolunteer(name, id);
-        System.out.println("¡Bienvenido, + " + name + "!");
+        System.out.println("¡Bienvenido, " + name + "!");
     }
 
     public void registerWalk() {
@@ -85,7 +89,7 @@ public class COP16 {
         System.out.println("¿Cuántos guías acudirán a la caminata el día de hoy?");
         int guides = reader.nextInt();
         reader.nextLine();
-        System.out.println("Ingresa el tipo de ruta");
+        System.out.println("Ingresa el tipo de ruta (LADERA, FARALLONES, ORIENTE)");
         String routeType = reader.nextLine();
         System.out.println("Ingresa la temperatura");
         double temperature = reader.nextDouble();
@@ -116,8 +120,8 @@ public class COP16 {
         System.out.println("Ingresa los recursos económicos necesarios para un buen cuidado del hábitat");
         double budget = reader.nextDouble();
         reader.nextLine();
-        controller.createBiodiversePlace(name, department, area, photo, inauguration, budget);
-        System.out.println("Lugar ingresado con éxito.");
+        System.out.println(
+                controller.registerPlace(name, department, area, photo, inauguration, budget));
     }
 
     public void asociateCommunityToPlace() {
@@ -146,12 +150,12 @@ public class COP16 {
                 .println(
                         "Ingresa el problema de la comunidad (FALTA_AGUA, FALTA_HOSPITAL, FALTA_ESCUELA, FALTA_COMIDA)");
         String problem = reader.nextLine();
-        controller.createCommunity(name, type, representativeName, representativePhone, population, problem);
+        controller.registerCommunity(name, type, representativeName, representativePhone, population, problem);
     }
 
     public void registerSpecie() {
         // Código para registrar una especie
-        System.out.println("Ingresa el nombre del lugar a donde se le registrarará la especie");
+        System.out.println("Ingresa el nombre del lugar a donde se le registrará la especie");
         String bioPlaceName = reader.nextLine();
         System.out.println("Ingresa el nombre de la especie");
         String name = reader.nextLine();
