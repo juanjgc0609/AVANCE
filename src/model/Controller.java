@@ -181,13 +181,14 @@ public class Controller {
      * @return A message with the places sorted by area.
      */
     public String showPlacesByArea() {
-        // Lógica para mostrar los lugares por área
-        BiodiversePlace[] places = sortPlacesByArea();
-        String message = "";
-        for (int i = 0; i < places.length; i++) {
-            message += places[i].toString() + "\n";
+        BiodiversePlace[] sortedPlaces = sortPlacesByArea();
+        StringBuilder message = new StringBuilder();
+        for (int i = 0; i < sortedPlaces.length; i++) {
+            if (sortedPlaces[i] != null) { // Asegurarse de que el lugar no sea nulo
+                message.append(sortedPlaces[i].toString()).append("\n");
+            }
         }
-        return message;
+        return message.toString();
     }
 
     /**
@@ -200,13 +201,13 @@ public class Controller {
         for (int i = 0; i < places.length - 1; i++) {
             for (int j = 0; j < places.length - i - 1; j++) {
                 if (places[j].getArea() > places[j + 1].getArea()) {
+                    // Intercambiar lugares si es necesario
                     BiodiversePlace temp = places[j];
                     places[j] = places[j + 1];
                     places[j + 1] = temp;
                 }
             }
         }
-
         return places;
     }
 
@@ -278,14 +279,19 @@ public class Controller {
     public Walk searchWalkByRouteType(String routeType) {
         // Lógica para buscar una caminata por su tipo de ruta
         Walk walk = null;
-        for (int i = 0; i < volunteer.getWalks().length; i++) {
-            if (volunteer.getWalks()[i] != null) {
-                if (volunteer.getWalks()[i].getRoute().getType().equals(routeType.toUpperCase())) {
-                    walk = volunteer.getWalks()[i];
+        Walk[] walks = volunteer.getWalks();
+
+        for (int i = 0; i < walks.length; i++) {
+            if (walks[i] != null) {
+                // Compara el nombre del enum con la ruta pasada
+                if (walks[i].getRoute().getType().name().equalsIgnoreCase(routeType)) {
+                    walk = walks[i];
+                    break; // Sale del bucle una vez que se encuentra la caminata
                 }
             }
         }
-        return walk;
+
+        return walk; // Retorna la caminata encontrada o null si no se encontró
     }
 
     /**
@@ -352,7 +358,6 @@ public class Controller {
      */
 
     public BiodiversePlace searchPlaceByName(String name) {
-        // Lógica para buscar un lugar por su nombre
         BiodiversePlace place = null;
         for (int i = 0; i < places.length; i++) {
             if (place != null && places[i].getName().equals(name)) {
@@ -360,7 +365,7 @@ public class Controller {
                 break;
             }
         }
-        return place;
+        return null;
     }
 
     /**
@@ -397,7 +402,7 @@ public class Controller {
                 break;
             }
         }
-        return route;
+        return null;
     }
 
     /**

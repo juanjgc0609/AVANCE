@@ -32,7 +32,7 @@ public class COP16 {
             System.out.println("10. Para consultar el nombre del lugar con mayor cantidad de especies.");
             System.out.println("11. Salir");
             opt = cop16.reader.nextInt();
-            cop16.reader.nextLine();
+            cop16.reader.nextLine(); // Consume el salto de línea
             switch (opt) {
                 case 1:
                     cop16.registerVolunteer();
@@ -72,13 +72,14 @@ public class COP16 {
                     break;
             }
         }
+        cop16.reader.close(); // Cierra el escáner al final
     }
 
     public void registerVolunteer() {
         // Código para registrar un voluntario
         System.out.println(
-                "Bienvenido voluntario a la aplicación de Interacción de Rutas Ecológicas COP 16 Cali, Colombia");
-        System.out.println("¿Cúal es tu nombre?");
+                "Bienvenido voluntario a la aplicación de Interacción de Rutas Ecológicas COP 16 Cali, Colombia");
+        System.out.println("¿Cuál es tu nombre?");
         String name = reader.nextLine();
         System.out.println("Por favor, digita tu cédula");
         String id = reader.nextLine();
@@ -134,12 +135,16 @@ public class COP16 {
         String bioPlaceName = reader.nextLine();
         System.out.println("Ingresa el nombre de la comunidad");
         String name = reader.nextLine();
+
         System.out.println("Ingresa el tipo de comunidad (AFROCOLOMBIANA, INDIGENA, RAIZAL)");
         String type = reader.nextLine();
+
         System.out.println("Ingresa el nombre del representante de la comunidad");
         String representativeName = reader.nextLine();
+
         System.out.println("Ingresa el número de teléfono del representante de la comunidad");
         String representativePhone = reader.nextLine();
+
         System.out.println("Ingresa la población de la comunidad");
         int population = reader.nextInt();
         reader.nextLine();
