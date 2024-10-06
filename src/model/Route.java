@@ -1,30 +1,38 @@
 package model;
-import java.sql.Time;
+
+import java.time.LocalTime;
 
 public class Route {
-    private Time start;
-    private Time end;
+    private LocalTime start;
+    private LocalTime end;
     private String meetingPoint;
-    private String attribute;
+    private TypeRoute type;
+
+    public Route(String start, String end, String meetingPoint, String type) {
+        setStart(start);
+        setEnd(end);
+        this.meetingPoint = meetingPoint;
+        setType(type);
+    }
 
     // Obtener la hora de inicio
-    public Time getStart() {
+    public LocalTime getStart() {
         return start;
     }
 
     // Establecer la hora de inicio
-    public void setStart(Time start) {
-        this.start = start;
+    public void setStart(String start) {
+        this.start = LocalTime.parse(start);
     }
 
     // Obtener la hora de fin
-    public Time getEnd() {
+    public LocalTime getEnd() {
         return end;
     }
 
     // Establecer la hora de fin
-    public void setEnd(Time end) {
-        this.end = end;
+    public void setEnd(String end) {
+        this.end = LocalTime.parse(end);
     }
 
     // Obtener el punto de encuentro
@@ -37,14 +45,13 @@ public class Route {
         this.meetingPoint = meetingPoint;
     }
 
-    // Obtener el atributo
-    public String getAttribute() {
-        return attribute;
+    // Obtener el tipo de ruta
+    public TypeRoute getType() {
+        return type;
     }
 
-    // Establecer el atributo
-    public void setAttribute(String attribute) {
-        this.attribute = attribute;
+    // Establecer el tipo de ruta
+    public void setType(String type) {
+        this.type = TypeRoute.valueOf(type.toUpperCase());
     }
 }
-
