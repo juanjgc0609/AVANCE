@@ -6,7 +6,14 @@ public class Specie {
     private String photo;
     private int numberOfSpecimens;
 
-    // Constructor para Specie
+    /**
+     * Constructs a new Specie object with the given attributes.
+     *
+     * @param name              The name of the species.
+     * @param type              The type of the species (FLORA or FAUNA).
+     * @param photo             (Optional) A photo of the species.
+     * @param numberOfSpecimens The number of specimens in the population.
+     */
     public Specie(String name, String type, String photo, int numberOfSpecimens) {
         this.name = name;
         setType(type);
@@ -14,49 +21,46 @@ public class Specie {
         this.numberOfSpecimens = numberOfSpecimens;
     }
 
-    // Obtener el número de especímenes
+    // Getters and setters
     public int getNumberSpecimens() {
         return numberOfSpecimens;
     }
 
-    // Representación de la especie en formato String
-    @Override
-    public String toString() {
-        return "Especie: " + name + ", Tipo: " + type + ", Número de especímenes: " + numberOfSpecimens;
-    }
-
-    // Obtener el nombre de la especie
     public String getName() {
         return name;
     }
 
-    // Obtener el tipo de la especie
     public TypeSpecies getTypeSpecie() {
         return type;
     }
 
-    // Establecer el nombre de la especie
     public void setName(String name) {
         this.name = name;
     }
 
-    // Establecer el tipo de la especie
     public void setType(String type) {
         this.type = TypeSpecies.valueOf(type.toUpperCase());
     }
 
-    // Establecer el número de especímenes
     public void setNumberSpecimens(int number) {
         this.numberOfSpecimens = number;
     }
 
-    // Obtener la foto de la especie
     public String getPhoto() {
         return photo;
     }
 
-    // Establecer la foto de la especie
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    /**
+     * Returns a string representation of the Specie object.
+     * 
+     * @return A string representation of the Specie object.
+     */
+    @Override
+    public String toString() {
+        return "Especie: " + name + ", Tipo: " + type + ", Número de especímenes: " + numberOfSpecimens;
     }
 }

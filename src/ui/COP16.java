@@ -5,7 +5,9 @@ import java.util.Scanner;
 import model.Controller;
 
 public class COP16 {
+    // Attributes
     Scanner reader;
+    // Aso
     Controller controller;
 
     public COP16() {
@@ -13,6 +15,12 @@ public class COP16 {
         controller = new Controller();
     }
 
+    /**
+     * Main
+     * main method for COP16
+     * 
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         // Código para inicializar el sistema
         COP16 cop16 = new COP16();
@@ -75,6 +83,14 @@ public class COP16 {
         cop16.reader.close(); // Cierra el escáner al final
     }
 
+    /**
+     * Allows a volunteer to register in the system.
+     * 
+     * This method asks the user for his/her name and ID, then calls the
+     * createVolunteer method in the controller to store the information.
+     * 
+     * After the volunteer is registered, a welcome message is displayed.
+     */
     public void registerVolunteer() {
         // Código para registrar un voluntario
         System.out.println(
@@ -87,6 +103,17 @@ public class COP16 {
         System.out.println("¡Bienvenido, " + name + "!");
     }
 
+    /**
+     * Allows a volunteer to register a walk in the system.
+     * 
+     * This method asks the user for the number of participants and guides in the
+     * walk, the type of route, temperature, and humidity.
+     * Then it calls the asociateWalkToVolunteer method in the controller to store
+     * the information.
+     * 
+     * After the walk is registered, a message is displayed indicating if the
+     * weather is good for the walk or not.
+     */
     public void registerWalk() {
         // Código para registrar una caminata
         System.out.println("¿Cuantos participantes acudirán a la caminata el día de hoy?");
@@ -107,6 +134,17 @@ public class COP16 {
 
     }
 
+    /**
+     * Allows a volunteer to register a biodiverse place in the system.
+     * 
+     * This method asks the user for the name, department, area, photo, inauguration
+     * date, and budget of the place.
+     * Then it calls the registerPlace method in the controller to store the
+     * information.
+     * 
+     * After the place is registered, a message is displayed indicating if the place
+     * was successfully registered or not.
+     */
     public void registerBiodiversePlace() {
         // Código para registrar un lugar biodiverso
         System.out.println("Ingresa el nombre del lugar biodiverso");
@@ -129,6 +167,19 @@ public class COP16 {
                 controller.registerPlace(name, department, area, photo, inauguration, budget));
     }
 
+    /**
+     * Allows a volunteer to register a community in the system.
+     * 
+     * This method asks the user for the name of the place where the community is
+     * located, the name of the community, the type of the community, the name of
+     * the community representative, the phone number of the representative, the
+     * population of the community, and the problem the community is facing.
+     * Then it calls the registerCommunity method in the controller to store the
+     * information.
+     * 
+     * After the community is registered, a message is displayed indicating if the
+     * community was successfully registered or not.
+     */
     public void registerCommunity() {
         // Código para registrar una comunidad
         System.out.println("Ingresa el nombre del lugar donde se encuentra la comunidad");
@@ -156,6 +207,18 @@ public class COP16 {
                 bioPlaceName);
     }
 
+    /**
+     * Allows a volunteer to register a specie in the system.
+     * 
+     * This method asks the user for the name of the place where the specie is
+     * located, the name of the specie, the type of the specie, the photo of the
+     * specie, and the number of specimens of the specie.
+     * Then it calls the asociateSpecieToPlace method in the controller to store the
+     * information.
+     * 
+     * After the specie is registered, a message is displayed indicating if the
+     * specie was successfully registered or not.
+     */
     public void registerSpecie() {
         // Código para registrar una especie
         System.out.println("Ingresa el nombre del lugar a donde se le registrará la especie");
@@ -173,6 +236,18 @@ public class COP16 {
                 controller.asociateSpecieToPlace(bioPlaceName, name, type, photo, numberOfSpecimens));
     }
 
+    /**
+     * Modifies a specie in a place.
+     * 
+     * This method asks the user for the name of the place, the name of the specie,
+     * the new name of the specie, the new type of the specie, the new photo of the
+     * specie, and the new number of specimens of the specie.
+     * Then it calls the changeSpecie method in the controller to store the
+     * information.
+     * 
+     * After the specie is modified, a message is displayed indicating if the specie
+     * was successfully modified or not.
+     */
     public void changeSpecie() {
         // Código para modificar una especie en un lugar
         System.out.println("Ingresa el nombre del lugar");
@@ -192,16 +267,39 @@ public class COP16 {
                 newSpeciePhoto, newNumberOfSpecimens));
     }
 
+    /**
+     * Shows the places sorted by area.
+     * 
+     * This method calls the showPlacesByArea method in the controller to get a
+     * string with the places sorted by area.
+     * Then it prints the string to the console.
+     */
     public void showPlacesByArea() {
         // Código para mostrar los lugares según su área
         System.out.println(controller.showPlacesByArea());
     }
 
+    /**
+     * Shows the department with more places.
+     * 
+     * This method calls the departmentWithMorePlaces method in the controller to
+     * get the department with more places.
+     * Then it prints the department to the console.
+     */
     public void departmentWithMorePlaces() {
         // Código para mostrar el departamento con más lugares registrados
         System.out.println(controller.departmentWithMorePlaces());
     }
 
+    /**
+     * Consults the communities with a specific problem.
+     * 
+     * This method asks the user to input the problem to consult, and then it calls
+     * the
+     * consultCommunitiesByProblem method in the controller to get a string with the
+     * information of the communities with the specified problem. Then it prints the
+     * string to the console.
+     */
     public void consultCommunitiesByProblem() {
         // Código para consultar la información de las comunidades con problemas
         System.out.println("Ingresa el problema a consultar");
@@ -209,6 +307,13 @@ public class COP16 {
         System.out.println(controller.consultCommunitiesByProblem(problem));
     }
 
+    /**
+     * Shows the place with the most species.
+     * 
+     * This method calls the showPlaceNameWithMoreSpecies method in the controller
+     * to get a string with the name of the place with the most species.
+     * Then it prints the string to the console.
+     */
     public void showPlaceNameWithMoreSpecies() {
         // Código para consultar el lugar con más especies
         System.out.println(controller.showPlaceNameWithMoreSpecies());

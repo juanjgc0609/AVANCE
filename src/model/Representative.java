@@ -4,26 +4,34 @@ public class Representative {
     private String name;
     private String cellphone;
 
-    // Constructor para Representative
+    /**
+     * Creates a new representative in the system.
+     * 
+     * @param name      The name of the representative.
+     * @param cellphone The cellphone of the representative.
+     */
+
     public Representative(String name, String cellphone) {
         this.name = name;
         this.cellphone = cellphone;
     }
 
-    // Obtener el nombre del representante
+    // getters and setters
     public String getName() {
         return name;
     }
 
-    // Obtener el celular del representante
     public String getCellphone() {
         return cellphone;
     }
 
-    // Representación del representante en formato String
+    /**
+     * Returns a string representation of the representative.
+     * 
+     * @return A string representation of the representative.
+     */
     @Override
     public String toString() {
         return "Representante: " + name + ", Celular: " + cellphone;
     }
 }
-

@@ -8,7 +8,18 @@ public class Walk {
     private double humidity;
     private Volunteer volunteer;
 
-    // Constructor para Walk
+    // Constructor
+    /**
+     * Creates a new walk with the given route, participants, guides, volunteer,
+     * temperature, and humidity.
+     * 
+     * @param route        The route of the walk.
+     * @param participants The number of participants in the walk.
+     * @param guides       The number of guides for the walk.
+     * @param volunteer    The volunteer assigned to the walk.
+     * @param temperature  The temperature during the walk.
+     * @param humidity     The humidity during the walk.
+     */
     public Walk(Route route, int participants, int guides, Volunteer volunteer, double temperature, double humidity) {
         this.route = route;
         this.guides = guides;
@@ -18,31 +29,13 @@ public class Walk {
         this.humidity = humidity;
     }
 
-    // Obtener la cantidad de guías
+    // getters and setters
     public int getGuides() {
         return guides;
     }
 
-    // Obtener la cantidad de participantes
     public int getParticipants() {
         return participants;
-    }
-
-    // Calcular el total de personas (guías + participantes)
-    public int calculateTotalPeople() {
-        return participants + guides;
-    }
-
-    // Calcular la cantidad de buses necesarios (asumiendo capacidad de 40 personas
-    // por bus)
-    public int calculateBusesNeeded(int totalPeople) {
-        return (int) Math.ceil(totalPeople / 25.0); // Cada bus tiene capacidad para 40 personas
-    }
-
-    // Verificar si el clima es adecuado (ejemplo con temperatura entre 15 y 30
-    // grados y humedad < 60%)
-    public boolean goodWeather() {
-        return temperature >= 20 && temperature <= 25 && humidity >= 40 && humidity <= 60;
     }
 
     public Route getRoute() {
@@ -85,7 +78,40 @@ public class Walk {
         this.volunteer = volunteer;
     }
 
-    // Método toString para describir la caminata
+    /**
+     * Calculates the total number of people in the walk.
+     * 
+     * @return The total number of people in the walk.
+     */
+    public int calculateTotalPeople() {
+        return participants + guides;
+    }
+
+    /**
+     * Calculates the number of buses needed for the walk.
+     * 
+     * @param totalPeople The total number of people in the walk.
+     * @return The number of buses needed for the walk.
+     */
+
+    public int calculateBusesNeeded(int totalPeople) {
+        return (int) Math.ceil(totalPeople / 25.0); // Cada bus tiene capacidad para 40 personas
+    }
+
+    /**
+     * Determines if the weather is good for the walk.
+     * 
+     * @return True if the weather is good for the walk, false otherwise.
+     */
+    public boolean goodWeather() {
+        return temperature >= 20 && temperature <= 25 && humidity >= 40 && humidity <= 60;
+    }
+
+    /**
+     * Returns a string representation of the walk.
+     * 
+     * @return A string representation of the walk.
+     */
     @Override
     public String toString() {
         return "Caminata: " + route.getType() + ", Guías: " + guides + ", Participantes: " + participants;

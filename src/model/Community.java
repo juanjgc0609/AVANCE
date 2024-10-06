@@ -7,7 +7,15 @@ public class Community {
     private int population;
     private Problem problem;
 
-    // Constructor para Community
+    /**
+     * Creates a new community in the system.
+     * 
+     * @param name           The name of the community.
+     * @param type           The type of the community.
+     * @param representative The representative of the community.
+     * @param population     The population of the community.
+     * @param problem        The problem the community is facing.
+     */
     public Community(String name, String type, Representative representative, int population, String problem) {
         this.name = name;
         setTypeCommunity(type);
@@ -15,53 +23,51 @@ public class Community {
         this.population = population;
         setProblem(problem);
     }
+    // getters and setters
 
-    // Obtener el nombre de la comunidad
     public String getName() {
         return name;
     }
 
-    // Establecer el nombre de la comunidad
     public void setName(String name) {
         this.name = name;
     }
 
-    // Obtener el problema de la comunidad
     public Problem getProblem() {
         return problem;
     }
 
-    // Establecer el problema de la comunidad
     public void setProblem(String problem) {
         this.problem = Problem.valueOf(problem.toUpperCase());
     }
 
-    // Obtener el representante de la comunidad
     public Representative getRepresentative() {
         return representative;
     }
 
-    // Obtener el tipo de comunidad
     public TypeCommunity getTypeCommunity() {
         return type;
     }
 
-    // Establecer el tipo de comunidad
     public void setTypeCommunity(String type) {
         this.type = TypeCommunity.valueOf(type.toUpperCase());
     }
 
-    // Obtener la población de la comunidad
     public int getPopulation() {
         return population;
     }
 
-    // Establecer la población de la comunidad
     public void setPopulation(int population) {
         this.population = population;
     }
 
-    // Representación de la comunidad en formato String
+    /************* ✨ Codeium Command ⭐ *************/
+    /**
+     * Returns a string representation of the community.
+     * 
+     * @return A string representation of the community.
+     */
+    /****** 61a8cacf-3c12-4337-8361-c9df9689ab6e *******/
     @Override
     public String toString() {
         return "Comunidad: " + name + ", Tipo: " + type + ", Población: " + population + ", Problema: " + problem;
