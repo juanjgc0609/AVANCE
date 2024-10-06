@@ -42,7 +42,7 @@ public class Walk {
     // Verificar si el clima es adecuado (ejemplo con temperatura entre 15 y 30
     // grados y humedad < 60%)
     public boolean goodWeather() {
-        return temperature >= 15 && temperature <= 30 && humidity < 60;
+        return temperature >= 20 && temperature <= 25 && humidity >= 40 && humidity <= 60;
     }
 
     public Route getRoute() {

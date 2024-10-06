@@ -17,7 +17,7 @@ public class COP16 {
         // Código para inicializar el sistema
         COP16 cop16 = new COP16();
         int opt = 0;
-        while (opt != 10) {
+        while (opt != 11) {
             System.out.println("¿Que desea hacer?");
             System.out.println("1. Registrar voluntario");
             System.out.println("2. Para registrar una caminata");
@@ -30,7 +30,7 @@ public class COP16 {
             System.out.println("8. Modificar los datos de la especie en un lugar.");
             System.out.println("9. Para consultar la información de las comunidades con problemas");
             System.out.println("10. Para consultar el nombre del lugar con mayor cantidad de especies.");
-            System.out.println("10. Salir");
+            System.out.println("11. Salir");
             opt = cop16.reader.nextInt();
             cop16.reader.nextLine();
             switch (opt) {
@@ -63,8 +63,12 @@ public class COP16 {
                     break;
                 case 10:
                     cop16.showPlaceNameWithMoreSpecies();
+                    break;
+                case 11:
+                    System.out.println("Gracias por usar el sistema. ¡Hasta luego!");
+                    break;
                 default:
-                    System.out.println("Opciòn inválida");
+                    System.out.println("Opción inválida");
                     break;
             }
         }
@@ -124,18 +128,10 @@ public class COP16 {
                 controller.registerPlace(name, department, area, photo, inauguration, budget));
     }
 
-    public void asociateCommunityToPlace() {
-        // Código para asociar una comunidad a un lugar biodiverso
-        System.out.println("Ingresa el nombre del lugar");
-        String bioPlaceName = reader.nextLine();
-        System.out.println("Ingresa el nombre de la comunidad");
-        String communityName = reader.nextLine();
-        System.out.println(controller.asociateCommunityToPlace(bioPlaceName, communityName));
-
-    }
-
     public void registerCommunity() {
         // Código para registrar una comunidad
+        System.out.println("Ingresa el nombre del lugar donde se encuentra la comunidad");
+        String bioPlaceName = reader.nextLine();
         System.out.println("Ingresa el nombre de la comunidad");
         String name = reader.nextLine();
         System.out.println("Ingresa el tipo de comunidad (AFROCOLOMBIANA, INDIGENA, RAIZAL)");
@@ -146,11 +142,13 @@ public class COP16 {
         String representativePhone = reader.nextLine();
         System.out.println("Ingresa la población de la comunidad");
         int population = reader.nextInt();
+        reader.nextLine();
         System.out
                 .println(
                         "Ingresa el problema de la comunidad (FALTA_AGUA, FALTA_HOSPITAL, FALTA_ESCUELA, FALTA_COMIDA)");
         String problem = reader.nextLine();
-        controller.registerCommunity(name, type, representativeName, representativePhone, population, problem);
+        controller.registerCommunity(name, type, representativeName, representativePhone, population, problem,
+                bioPlaceName);
     }
 
     public void registerSpecie() {

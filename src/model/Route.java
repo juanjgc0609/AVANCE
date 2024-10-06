@@ -8,9 +8,9 @@ public class Route {
     private String meetingPoint;
     private TypeRoute type;
 
-    public Route(String start, String end, String meetingPoint, String type) {
-        setStart(start);
-        setEnd(end);
+    public Route(int startHour, int startMinute, int endHour, int endMinute, String meetingPoint, String type) {
+        setStart(startHour, startMinute);
+        setEnd(endHour, endMinute);
         this.meetingPoint = meetingPoint;
         setType(type);
     }
@@ -21,8 +21,8 @@ public class Route {
     }
 
     // Establecer la hora de inicio
-    public void setStart(String start) {
-        this.start = LocalTime.parse(start);
+    public void setStart(int hour, int minute) {
+        this.start = LocalTime.of(hour, minute);
     }
 
     // Obtener la hora de fin
@@ -31,8 +31,8 @@ public class Route {
     }
 
     // Establecer la hora de fin
-    public void setEnd(String end) {
-        this.end = LocalTime.parse(end);
+    public void setEnd(int hour, int minute) {
+        this.end = LocalTime.of(hour, minute);
     }
 
     // Obtener el punto de encuentro
